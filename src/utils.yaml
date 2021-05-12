@@ -1,0 +1,64 @@
+importSubModule:
+ prefix: imps
+ description: import subModule from modules
+ body: import ${1:moduleName} from '${0:module}';
+
+importModule:
+ prefix: imps
+ description: import subModule from modules
+ body: import $1:moduleName from '${0:module}';
+
+importModuleAlias:
+  prefix: impa
+  description: import * as alias from module
+  body: import * as ${1:alias} from '${0:module}';
+
+exportDefault:
+  prefix: exp
+  description: export default ***
+  body: export default $0;
+
+exportDestructing:
+  prefix: exd
+  description: export {***}
+  body: export { $0 };
+
+consolelog:
+ prefix: clg
+ description: console.log()
+ body: console.log(${1:object});
+
+forEach:
+  body: "${1:array}.forEach(${2:currentItem} => {\t${0}})"
+  description: Creates a forEach statement in ES7 syntax
+  prefix: fre
+
+forIn:
+  body: "for(let ${1:item} in ${2:object}) {\t${0}}"
+  description: Iterating over property values of iterable objects
+  prefix: fin
+
+forOf:
+  body: "for(let ${1:item} of ${2:object}) {\t${0}}"
+  description: Iterating over property names of iterable objects
+  prefix: fof
+
+namedFunction:
+  body: "const ${1:name} = (${2:params}) => {\t${3}}"
+  description: Creates a named function in ES7 syntax
+  prefix: nfn
+
+anonymousFunction:
+  body: "(${1:params}) => {\t${2}}"
+  description: Creates an anonymous function in ES7 syntax
+  prefix: anfn
+
+method:
+  body: "${1:methodName} = (${2:params}) => {\t${0}}"
+  description: Creates a method inside a class in ES7 syntax
+  prefix: met
+
+promise:
+  body: "return new Promise((resolve, reject) => {\t${1}})"
+  description: Creates and returns a new Promise in the standard ES7 syntax
+  prefix: prom
