@@ -1,22 +1,42 @@
 importSubModule:
  prefix: imps
  description: import subModule from modules
- body: import ${1:moduleName} from '${0:module}';
+ body: import { $2 } from '${1:module}';$0';
 
 importModule:
- prefix: imps
- description: import subModule from modules
- body: import $1:moduleName from '${0:module}';
+ prefix: imp
+ description: import entire module from modules
+ body: import ${2:moduleName} from '${1:module}';$0;
 
 importModuleAlias:
   prefix: impa
   description: import * as alias from module
   body: import * as ${1:alias} from '${0:module}';
 
+require:
+  prefix: rqr
+  description: Require a package
+  body: require('${1:package}');
+
+requireToConst:
+  prefix: req
+  body: const ${1:packageName} = require('${1:package}');$0
+  description: Require a package to const
+
 exportDefault:
   prefix: exp
   description: export default ***
   body: export default $0;
+
+destructingObject:
+  prefix: dob
+  body: const {${2:propertyName}} = ${1:objectToDestruct};
+  description: Creates and assigns a local variable using object destructing
+
+destructingArray:
+  prefix: dar
+  body: const [${2:propertyName}] = ${1:arrayToDestruct};
+  description: Creates and assigns a local variable using array destructing
 
 exportDestructing:
   prefix: exd
@@ -62,3 +82,18 @@ promise:
   body: "return new Promise((resolve, reject) => {\t${1}})"
   description: Creates and returns a new Promise in the standard ES7 syntax
   prefix: prom
+
+thenCatch:
+  prefix: thenc
+  body: .then((${1:result}) => {\n\t${2}\n}).catch((${3:err}) => {\n\t${4}\n});
+  description: Add the .then and .catch methods to handle promises
+
+setInterval:
+  prefix: sti
+  body: setInterval(() => {\n\t${2}\n}, ${0:intervalInms});
+  description: Executes the given function at specified intervals in ES6 syntax
+
+setTimeout:
+  prefix: sto
+  body: setTimeout(() => {\n\t${2}\n}, ${1:delayInms});
+  description: Executes the given function after the specified delay in ES6 syntax

@@ -1,3 +1,47 @@
 useState:
   body: const [${1:state}, set${1/(.*)/${1:/capitalize}/}] = useState(${2:initialState});
   prefix: useState
+
+useCallback:
+  body: "useCallback(\t() => {\t\t${1:callback}\t},\t[${2:input}],)"
+  prefix: useCallback
+
+useContext:
+  body: const ${1:context} = useContext(${2:contextValue})
+  prefix: useContext
+
+useDebugValue:
+  body: useDebugValue(${1:value})
+  prefix: useDebugValue
+
+useDispatch:
+  body: const dispatch = useDispatch(${1:function})
+  prefix: useDispatch
+
+useEffect:
+  body: "useEffect(() => {\t${1:effect}\treturn () => {\t\t${2:cleanup}\t}}, [${3:input}])"
+  prefix: useEffect
+
+useImperativeHandle:
+  body: "useImperativeHandle(\t${1:ref},\t() => {\t\t${2:handler}\t},\t[${3:input}],)"
+  prefix: useImperativeHandle
+
+useLayoutEffect:
+  body: "useLayoutEffect(() => {\t${1:effect}\treturn () => {\t\t${2:cleanup}\t};}, [${3:input}])"
+  prefix: useLayoutEffect
+
+useMemo:
+  body: useMemo(() => ${1:function}, ${2:input})
+  prefix: useMemo
+
+useRef:
+  body: const ${1:ref} = useRef(${2:initialValue})
+  prefix: useRef
+
+useSelector:
+  body: const ${1:state} = useSelector(state => state.${1:state})
+  prefix: useSelector
+
+import React, { Component }:
+  body: import React, { Component } from 'react'
+  prefix: imrc
